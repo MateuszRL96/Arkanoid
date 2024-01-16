@@ -1,13 +1,13 @@
 package org.example;
 
-import java.awt.*;
-
 public abstract class BaseObject {
+    // Coordinates
     protected double x;
     protected double y;
-    private double radius;
+    // Object radius
+    protected double radius;
 
-    public BaseObject(double x, double y, double radius) {
+    protected BaseObject(double x, double y, double radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -37,10 +37,29 @@ public abstract class BaseObject {
         this.radius = radius;
     }
 
-    public abstract void move();
+    /**
+     * This method draws the object on the canvas.
+     */
+    abstract void draw(Canvas canvas);
 
-    public abstract void draw(Canvas canvas);
+    /**
+     * Move by one step.
+     */
+    abstract void move();
 
+    /**
+     * Check whether (x, y) is beyond the borders.
+     */
+    void checkBorders(double minx, double maxx, double miny, double maxy) {
+        if (x < minx) x = minx;
+        if (x > maxx) x = maxx;
+        if (y < miny) y = miny;
+        if (y > maxy) y = maxy;
+    }
+
+    /**
+     * Check whether the passed object (o) and the object (this) intersect.
+     */
     boolean intersects(BaseObject o) {
         double dx = x - o.x;
         double dy = y - o.y;
@@ -48,7 +67,4 @@ public abstract class BaseObject {
         double destination2 = Math.max(radius, o.radius);
         return destination <= destination2;
     }
-
-
 }
-
