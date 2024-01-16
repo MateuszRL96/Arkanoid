@@ -3,8 +3,8 @@ package org.example;
 import java.awt.*;
 
 public abstract class BaseObject {
-    private double x;
-    private double y;
+    protected double x;
+    protected double y;
     private double radius;
 
     public BaseObject(double x, double y, double radius) {
