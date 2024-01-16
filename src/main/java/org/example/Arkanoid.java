@@ -8,6 +8,7 @@ public class Arkanoid {
     private Ball ball;
     private Paddle paddle;
     private List<Brick> bricks;
+    public static Arkanoid game;
 
     public int getWidth() {
         return width;
@@ -52,5 +53,28 @@ public class Arkanoid {
 
     public void setBricks(List<Brick> bricks) {
         this.bricks = bricks;
+    }
+
+    public void run(){
+        while(true) {
+            move();
+            try
+            {
+                Thread.sleep(10);
+            } catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void move(){
+
+    }
+
+
+    public static void main(String[] args) {
+        game = new Arkanoid(800, 600);
+        game.run();
+        System.out.println("Dziala!");
     }
 }
